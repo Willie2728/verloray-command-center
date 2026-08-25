@@ -1,0 +1,2 @@
+export interface AvatarProvider { id: string; validateConfiguration(): Promise<{ok:boolean;message:string}>; startSession(): Promise<{sessionId:string}>; endSession(sessionId:string): Promise<void> }
+export class PlaceholderAvatarProvider implements AvatarProvider { id="placeholder"; async validateConfiguration(){return {ok:true,message:"Animated placeholder only; no avatar service connected."}} async startSession(){return {sessionId:crypto.randomUUID()}} async endSession(){return} }

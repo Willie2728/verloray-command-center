@@ -1,0 +1,2 @@
+import { describe, expect, it } from "vitest"; import { MockAdapter } from "./mock.adapter";
+describe("MockAdapter",()=>{it("streams labeled content and completes",async()=>{const events=[];for await(const event of new MockAdapter().streamResponse({requestId:crypto.randomUUID(),providerId:"mock",model:"verloray-sim-1",prompt:"Test the workflow"}))events.push(event);expect(events[0].type).toBe("start");expect(events.at(-1)?.type).toBe("complete");expect(events.some(e=>e.type==="delta"&&e.mock)).toBe(true)})})
